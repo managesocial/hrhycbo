@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
@@ -16,6 +17,12 @@ import {
 } from '@tabler/icons-react';
 
 export function Footer() {
+  const [year, setYear] = useState<number>(2026);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="bg-deep-river text-white border-t border-river-teal/30 pt-16 pb-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-river-teal/30">
@@ -114,7 +121,7 @@ export function Footer() {
       {/* Bottom Copyright, Centered Legal Links & Far-Right Credit */}
       <div className="max-w-7xl mx-auto pt-8 grid grid-cols-1 md:grid-cols-3 items-center justify-between text-xs text-slate-400 gap-4 text-center md:text-left">
         {/* Far Left: Copyright */}
-        <p className="md:text-left">&copy; {new Date().getFullYear()} Horizon Rivers of Hope Youth CBO. All Rights Reserved.</p>
+        <p className="md:text-left">&copy; {year} Horizon Rivers of Hope Youth CBO. All Rights Reserved.</p>
         
         {/* Centered: Privacy & Terms */}
         <div className="flex justify-center items-center gap-6">
