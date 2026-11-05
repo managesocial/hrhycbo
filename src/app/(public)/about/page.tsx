@@ -1,6 +1,7 @@
 import { AboutHeroModal } from '@/components/about/AboutHeroModal';
 import { MissionVisionValues } from '@/components/about/MissionVisionValues';
 import { ChairmanNote } from '@/components/about/ChairmanNote';
+import { CorePillars } from '@/components/home/CorePillars';
 import { MeetTheTeam } from '@/components/about/MeetTheTeam';
 import { PatronNote } from '@/components/about/PatronNote';
 
@@ -16,7 +17,7 @@ export default function AboutPage() {
       <AboutHeroModal />
 
       {/* 2. Mission, Vision, and Core Values */}
-      <MissionVisionValues />
+      <CorePillars />
 
       {/* 3. Note from the Chairman */}
       <PatronNote />

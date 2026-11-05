@@ -11,7 +11,8 @@ import {
   IconCheck,
   IconMapPin,
   IconBellRinging,
-  IconHeartHandshake
+  IconHeartHandshake,
+  IconSparkles
 } from '@tabler/icons-react';
 
 interface Announcement {
@@ -29,6 +30,25 @@ interface Announcement {
 }
 
 const announcements: Announcement[] = [
+
+   {
+    id: 'bishop-korir-peace',
+    title: 'Bishop Korir Peace & Social Cohesion Initiative',
+    type: 'upcoming',
+    typeLabel: 'Upcoming Initiative',
+    categoryLabel: 'Peace, Cohesion & Cultural Exchange',
+    date: 'December 14 - 19, 2026',
+    location: 'Nachola-Baragoi, Samburu County',
+    author: 'Ronoh Hamleyz Dan',
+    summary: 'Restoring the land, connecting communities, and inspiring the world through environmental action, interfaith youth dialogues, cultural exchanges, and global cooperation.',
+    fullDescription: [
+      'Peace begins when people unite to care for the places they share. Inspired by the enduring legacy of Bishop Cornelius Korir, this initiative transforms environmental action into a powerful bridge connecting neighbours, faiths, cultures, and communities across the world.',
+      'Young people are leading the way through clean-up drives, interfaith collaboration, and open community dialogue around one shared dream: creating safe, peaceful communities. This includes transforming riversides into Korir Peace Parks—reborn public grounds where neighbours meet, children play, and communities celebrate side by side.',
+      'Through intercultural learning, sister city partnerships, and youth leadership exchanges, the program equips a generation of confident young leaders to share Eldoret’s local environmental and peace-building solutions with global partners.'
+    ],
+    imageUrl: '/images/projects/peace-park-4.jpeg',
+  },
+  
   {
     id: 'sosiani-next-phase-cleanup',
     title: 'Upcoming: Q4 Sosiani Riverbank Restoration & Youth Eco-Camp',
@@ -44,7 +64,7 @@ const announcements: Announcement[] = [
       'Building on our previous successes, this phase will focus on clearing upstream plastic accumulation, establishing designated community green benches, and training 100 new youth eco-ambassadors.',
       'We are calling upon local schools, local business owners, and resident associations in Eldoret to volunteer their time and hands. Tools, gloves, and seedlings will be provided on-site.'
     ],
-    imageUrl: 'images/projects/mazingira-3.jpg',
+    imageUrl: '/images/projects/mazingira-3.jpg',
   },
   {
     id: 'county-waste-policy-passed',
@@ -81,7 +101,7 @@ const announcements: Announcement[] = [
     ],
     imageUrl: '/images/projects/policy-framework-1.jpg',
   },
-
+ 
 ];
 
 export function NewsGrid() {
@@ -142,92 +162,104 @@ export function NewsGrid() {
   };
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
+    <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 sm:space-y-16">
       
-      {/* Featured Highlight Banner */}
+      {/* Featured Highlight Banner with Section Header */}
       {filterType === 'all' && (
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="relative rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-0"
-        >
-          <div 
-            className="lg:col-span-6 h-64 lg:h-auto bg-cover bg-center min-h-[300px]"
-            style={{ backgroundImage: `url('${featuredItem.imageUrl}')` }}
-          />
-          <div className="lg:col-span-6 p-8 sm:p-10 flex flex-col justify-between space-y-6">
-            <div className="space-y-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="bg-sunrise-orange text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
-                  <IconBellRinging size={14} />
-                  Featured Upcoming Initiative
-                </span>
-                <span className="text-xs font-semibold text-river-teal dark:text-sunrise-orange bg-river-teal/10 px-3 py-1 rounded-full">
-                  {featuredItem.categoryLabel}
-                </span>
-              </div>
-
-              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-deep-river dark:text-white leading-snug">
-                {featuredItem.title}
-              </h2>
-
-              <div className="flex items-center gap-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
-                <span className="flex items-center gap-1">
-                  <IconCalendar size={14} className="text-river-teal" />
-                  {featuredItem.date}
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1">
-                  <IconMapPin size={14} className="text-sunrise-orange" />
-                  {featuredItem.location}
-                </span>
-              </div>
-
-              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-                {featuredItem.summary}
-              </p>
-            </div>
-
-            <div className="pt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-800">
-              <span className="text-xs font-medium text-slate-400">
-                Organized by Horizon Rivers
-              </span>
-              <button
-                onClick={() => setActiveItem(featuredItem)}
-                className="inline-flex items-center gap-2 bg-sunrise-orange hover:bg-sunrise-orange/90 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-all shadow-md"
-              >
-                <span>View Announcement Details</span>
-                <IconArrowRight size={16} />
-              </button>
-            </div>
+        <div className="space-y-3">
+          {/* Section Header so users clearly identify the Spotlight Card */}
+          <div className="flex items-center gap-2 px-1 text-deep-river dark:text-white">
+            <h2 className="font-heading font-extrabold text-lg sm:text-xl uppercase tracking-wide">
+              Featured Announcement
+            </h2>
           </div>
-        </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-0"
+          >
+            <div 
+              className="lg:col-span-6 h-64 lg:h-auto bg-cover bg-center min-h-[260px] sm:min-h-[320px]"
+              style={{ backgroundImage: `url('${featuredItem.imageUrl}')` }}
+            />
+            <div className="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="bg-sunrise-orange text-white text-[11px] sm:text-xs font-extrabold px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                    <IconBellRinging size={14} />
+                    Featured Initiative
+                  </span>
+                  <span className="text-[11px] sm:text-xs font-semibold text-river-teal dark:text-sunrise-orange bg-river-teal/10 px-3 py-1 rounded-full">
+                    {featuredItem.categoryLabel}
+                  </span>
+                </div>
+
+                <h3 className="font-heading font-extrabold text-xl sm:text-3xl text-deep-river dark:text-white leading-snug sm:leading-tight">
+                  {featuredItem.title}
+                </h3>
+
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-semibold text-slate-500 dark:text-slate-400">
+                  <span className="flex items-center gap-1">
+                    <IconCalendar size={14} className="text-river-teal shrink-0" />
+                    {featuredItem.date}
+                  </span>
+                  <span className="hidden sm:inline">•</span>
+                  <span className="flex items-center gap-1">
+                    <IconMapPin size={14} className="text-sunrise-orange shrink-0" />
+                    {featuredItem.location}
+                  </span>
+                </div>
+
+                <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                  {featuredItem.summary}
+                </p>
+              </div>
+
+              {/* Clean wrapping footer (No text overlap on mobile) */}
+              <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-slate-100 dark:border-slate-800">
+                <span className="text-xs font-medium text-slate-400 text-center sm:text-left">
+                  Organized by Horizon Rivers
+                </span>
+                <button
+                  onClick={() => setActiveItem(featuredItem)}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-sunrise-orange hover:bg-sunrise-orange/90 text-white font-bold px-5 py-3 rounded-xl text-xs sm:text-sm transition-all shadow-md"
+                >
+                  <span>View Announcement Details</span>
+                  <IconArrowRight size={16} />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       )}
 
-      {/* Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-        {[
-          { id: 'all', label: 'All Announcements & Updates' },
-          { id: 'upcoming', label: 'Upcoming Projects & Drives' },
-          { id: 'completed', label: 'Past Milestones & Successes' },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setFilterType(tab.id)}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-              filterType === tab.id
-                ? 'bg-river-teal text-white shadow-md'
-                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-river-teal'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
+      {/* Horizontal Swipeable Filter Pills on Mobile */}
+      <div className="w-full overflow-x-auto pb-2 scrollbar-none [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex items-center justify-start sm:justify-center gap-2.5 min-w-max px-1">
+          {[
+            { id: 'all', label: 'All Announcements & Updates' },
+            { id: 'upcoming', label: 'Upcoming Projects & Drives' },
+            { id: 'completed', label: 'Past Milestones & Successes' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setFilterType(tab.id)}
+              className={`shrink-0 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${
+                filterType === tab.id
+                  ? 'bg-river-teal text-white shadow-md'
+                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-river-teal'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Announcements Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {filteredAnnouncements.map((item, idx) => (
           <motion.div
             key={item.id}
@@ -277,12 +309,12 @@ export function NewsGrid() {
 
             {/* Card Footer */}
             <div className="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80">
-              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 truncate max-w-[50%]">
                 {item.categoryLabel}
               </span>
               <button
                 onClick={() => setActiveItem(item)}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-sunrise-orange hover:text-sunrise-orange/80 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-sunrise-orange hover:text-sunrise-orange/80 transition-colors shrink-0"
               >
                 <span>{item.type === 'upcoming' ? 'View Details' : 'Read Impact Story'}</span>
                 <IconArrowRight size={16} />
@@ -311,7 +343,7 @@ export function NewsGrid() {
               </button>
 
               {/* Modal Header */}
-              <div className="space-y-3">
+              <div className="space-y-3 pr-8">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className={`text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full text-white ${
                     activeItem.type === 'upcoming' ? 'bg-sunrise-orange' : 'bg-river-teal'
@@ -341,7 +373,7 @@ export function NewsGrid() {
 
               {/* Banner Image */}
               <div 
-                className="w-full h-64 sm:h-80 rounded-2xl bg-cover bg-center border border-slate-200 dark:border-slate-700 shadow-md"
+                className="w-full h-56 sm:h-80 rounded-2xl bg-cover bg-center border border-slate-200 dark:border-slate-700 shadow-md"
                 style={{ backgroundImage: `url('${activeItem.imageUrl}')` }}
               />
 
@@ -357,7 +389,7 @@ export function NewsGrid() {
                 <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
                   <button
                     onClick={() => handleShare(activeItem)}
-                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-river-teal/10 dark:bg-river-teal/20 text-river-teal dark:text-sunrise-orange hover:bg-river-teal hover:text-white dark:hover:bg-sunrise-orange dark:hover:text-white font-bold text-xs transition-all border border-river-teal/30"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-river-teal/10 dark:bg-river-teal/20 text-river-teal dark:text-sunrise-orange hover:bg-river-teal hover:text-white dark:hover:bg-sunrise-orange dark:hover:text-white font-bold text-xs transition-all border border-river-teal/30 w-full sm:w-auto"
                   >
                     {copied ? (
                       <>
@@ -377,7 +409,7 @@ export function NewsGrid() {
                     <Link
                       href="/contact"
                       onClick={() => setActiveItem(null)}
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-sunrise-orange hover:bg-sunrise-orange/90 text-white font-bold text-xs transition-all shadow-md"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-sunrise-orange hover:bg-sunrise-orange/90 text-white font-bold text-xs transition-all shadow-md w-full sm:w-auto"
                     >
                       <IconHeartHandshake size={16} />
                       <span>Get Involved / Join Us</span>

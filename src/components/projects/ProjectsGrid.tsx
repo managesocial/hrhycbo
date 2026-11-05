@@ -32,7 +32,7 @@ interface Project {
 }
 
 const projects: Project[] = [
- {
+  {
     id: 'cesip-uasin-gishu-consultation',
     title: 'From Landfill Stigma to Regeneration Pride',
     category: 'sanitation',
@@ -72,10 +72,10 @@ const projects: Project[] = [
     driveFolderUrl: 'https://photos.app.goo.gl/k7qLZnkntJ4PJgMS8',
     imageUrl: '/images/projects/bomain-5.jpg',
   },
-{
+  {
     id: 'uasin-gishu-county-entry-meeting',
     title: 'Entry Meeting with Uasin Gishu County: A New Chapter Begins',
-    category: 'sanitation', // Categorized alongside governance and policy dialogues
+    category: 'sanitation',
     categoryLabel: 'Policy & Deliberations',
     location: 'Golden Palace Hotel, Eldoret',
     timePeriod: 'Aug 26, 2026',
@@ -103,13 +103,13 @@ This was more than a meeting. Government, community, and youth stood together ar
     driveFolderUrl: 'https://photos.app.goo.gl/2rCsx19KcWtoxMWH9',
     imageUrl: '/images/projects/policy-framework-1.jpg',
   },
-{
+  {
     id: 'bishop-korir-peace',
     title: 'Bishop Korir Peace & Social Cohesion Initiative',
     category: 'peace',
     categoryLabel: 'Peace, Global Citizenship & Partnerships',
-    location: 'Sosiani River Bank, Eldoret',
-    timePeriod: 'August 2026 – Present',
+    location: 'Nachola- Baragoi, Samburu County',
+    timePeriod: '14th-19th Dec - 2026',
     status: 'Ongoing',
     summary: 'Restoring the land, connecting communities, and inspiring the world through environmental action, interfaith youth dialogues, cultural exchanges, and global cooperation.',
     fullDescription: `Peace begins when people unite to care for the places they share. Inspired by the enduring legacy of Bishop Cornelius Korir, this pillar transforms environmental action into a powerful bridge connecting neighbours, faiths, cultures, and communities across the world. 
@@ -183,11 +183,10 @@ This was more than a meeting. Government, community, and youth stood together ar
     driveFolderUrl: 'https://photos.app.goo.gl/4PtYGW7d7kVwCJ8q9',
     imageUrl: '/images/projects/mazingira-4.jpg',
   },
-
   {
     id: 'uasin-gishu-waste-regulations-review',
     title: 'Building a Cleaner, Healthier Uasin Gishu Together',
-    category: 'sanitation', // Categorized under policy and stakeholder deliberations
+    category: 'sanitation',
     categoryLabel: 'Policy & Deliberations',
     location: 'Golden Palace Hotel, Eldoret',
     timePeriod: '16th – 17th Sept 2026',
@@ -217,7 +216,6 @@ This was more than a meeting. Government, community, and youth stood together ar
     driveFolderUrl: 'https://photos.app.goo.gl/RGtX6vaShrXFCn236',
     imageUrl: '/images/projects/waste-regulations-4.jpg',
   },
-
 ];
 
 export function ProjectsGrid() {
@@ -256,27 +254,29 @@ export function ProjectsGrid() {
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
-      {/* Category Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-        {[
-          { id: 'all', label: 'All Projects' },
-          { id: 'sanitation', label: 'Sanitation & Circular' },
-          { id: 'enterprise', label: 'Youth Eco-Enterprises' },
-          { id: 'wash', label: 'Health & Wash' },
-          { id: 'peace', label: 'Peace, Global Citizenship & Partnerships' },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setSelectedCategory(tab.id)}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-              selectedCategory === tab.id
-                ? 'bg-river-teal text-white shadow-md'
-                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-river-teal'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
+      {/* Category Filter Tabs (Swipeable on Mobile) */}
+      <div className="w-full overflow-x-auto pb-2 scrollbar-none [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex items-center justify-start sm:justify-center gap-2.5 min-w-max px-1">
+          {[
+            { id: 'all', label: 'All Projects' },
+            { id: 'sanitation', label: 'Sanitation & Circular' },
+            { id: 'enterprise', label: 'Youth Eco-Enterprises' },
+            { id: 'wash', label: 'Health & Wash' },
+            { id: 'peace', label: 'Peace, Global Citizenship & Partnerships' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setSelectedCategory(tab.id)}
+              className={`shrink-0 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${
+                selectedCategory === tab.id
+                  ? 'bg-river-teal text-white shadow-md'
+                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-river-teal'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Projects Grid */}

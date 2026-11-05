@@ -44,7 +44,6 @@ export function AboutHeroModal() {
       {/* Hero Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
         <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-river-teal dark:text-sunrise-orange bg-river-teal/10 dark:bg-river-teal/30 px-3.5 py-1.5 rounded-full border border-river-teal/20 dark:border-river-teal/40">
-          <IconSparkles size={15} />
           Who We Are
         </span>
 

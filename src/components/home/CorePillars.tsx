@@ -126,7 +126,7 @@ export function CorePillars() {
           Core Focus Areas
         </span>
         <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-deep-river dark:text-white tracking-tight">
-          Our Four Pillars of Community Transformation
+          Our Core Pillars of Community Transformation
         </h2>
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300">
           We believe real change happens when clean environments, empowered youth, and peaceful societies work together.

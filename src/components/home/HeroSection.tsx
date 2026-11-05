@@ -1,25 +1,56 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { IconHeartHandshake, IconArrowRight, IconRecycle, IconUsers, IconHeart, IconSparkles } from '@tabler/icons-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  IconHeartHandshake, 
+  IconArrowRight, 
+  IconRecycle, 
+  IconUsers, 
+  IconHeart 
+} from '@tabler/icons-react';
+
+const heroImages = [
+  '/images/gallery/landing.jpg',
+  '/images/gallery/landing2.jpg', // Replace with '/images/gallery/landing2.jpg' when ready
+  '/images/gallery/landing3.jpg', // Replace with '/images/gallery/landing3.jpg' when ready
+];
 
 export function HeroSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto-advance slides every 6 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative overflow-hidden py-20 lg:py-28 px-4 sm:px-6 lg:px-8 text-white">
-      {/* Full Background Image */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none"
-        style={{
-          backgroundImage: `url('/images/gallery/landing.jpg')`,
-        }}
-      />
+      {/* Background Image Slider with Motion Cross-fade */}
+      <AnimatePresence mode="wait">
+        <motion.div 
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: 'easeInOut' }}
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none"
+          style={{
+            backgroundImage: `url('${heroImages[currentSlide]}')`,
+          }}
+        />
+      </AnimatePresence>
 
       {/* Dark overlay ONLY on mobile (black gradient), removed on desktop */}
-      <div className="absolute inset-0 w-full h-full bg-black/70 lg:bg-transparent pointer-events-none" />
+      <div className="absolute inset-0 w-full h-full bg-black/70 lg:bg-transparent pointer-events-none z-1" />
 
       {/* Background Decorative River Curve */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
+      <div className="absolute inset-0 opacity-10 pointer-events-none z-1">
         <svg className="w-full h-full" viewBox="0 0 1440 400" fill="none" preserveAspectRatio="none">
           <path
             d="M0 192C240 280 480 320 720 256C960 192 1200 128 1440 224V400H0V192Z"
@@ -38,7 +69,7 @@ export function HeroSection() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7 space-y-6 text-center lg:text-left w-full"
           >
-            {/* Updated Badge: Solid white background for high readability */}
+            {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-deep-river text-xs sm:text-sm font-extrabold tracking-wide uppercase shadow-md">
               Youth-Led Movement in Eldoret
             </div>
@@ -139,6 +170,21 @@ export function HeroSection() {
           </div>
 
         </div>
+
+        {/* Indicator Dots Only */}
+        <div className="mt-8 lg:mt-12 flex items-center justify-center gap-2 z-20 relative">
+          {heroImages.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-2.5 rounded-full transition-all ${
+                idx === currentSlide ? 'w-8 bg-sunrise-orange' : 'w-2.5 bg-white/40 hover:bg-white/60'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+
       </div>
     </section>
   );

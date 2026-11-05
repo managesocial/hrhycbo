@@ -29,7 +29,6 @@ interface GalleryMedia {
 }
 
 const mediaItems: GalleryMedia[] = [
-
   {
     id: '1',
     title: 'Mazingira Day - City Clean Up',
@@ -41,37 +40,9 @@ const mediaItems: GalleryMedia[] = [
     thumbnailUrl: '/images/projects/mazingira-3.jpg',
     videoUrl: 'https://www.youtube.com/embed/TLl_yUUKyeM?si=uLUBzjwXKFymN7PE',
     driveUrl: 'https://photos.app.goo.gl/4PtYGW7d7kVwCJ8q9',
-    spanClass: 'col-span-1 md:col-span-2 row-span-2 h-[420px]', // Standard Small Tile
+    spanClass: 'col-span-1 md:col-span-2 row-span-2 h-[420px]',
   },
-  /*
   {
-    id: '1',
-    title: 'Huruma Dumpsite Transformation & Eco-Brick Machine',
-    category: 'cleanups',
-    categoryLabel: 'Cleanups & Recycling',
-    location: 'Huruma, Eldoret',
-    date: 'September 2026',
-    type: 'video',
-    thumbnailUrl: '/images/gallery/cleanup-thumb.jpg',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Or '/videos/cleanup.mp4'
-    driveUrl: 'https://drive.google.com',
-    spanClass: 'col-span-1 md:col-span-2 row-span-2 h-[420px]', // Featured Large Tile
-  },
-   
-  {
-    id: '2',
-    title: 'Stakeholder Review of Waste Regulations',
-    category: 'policy',
-    categoryLabel: 'Policy Deliberations',
-    location: 'Golden Palace Hotel, Eldoret',
-    date: '16th–17th Sept 2026',
-    type: 'image',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200&auto=format&fit=crop',
-    driveUrl: 'https://drive.google.com',
-    spanClass: 'col-span-1 row-span-1 h-[420px]', // Standard Small Tile
-  },
-  */
- {
     id: '2',
     title: 'County Entry Meeting & Inclusive PPP Policy Framework',
     category: 'policy',
@@ -81,7 +52,7 @@ const mediaItems: GalleryMedia[] = [
     type: 'image',
     thumbnailUrl: '/images/projects/policy-framework-2.jpg',
     driveUrl: 'https://photos.app.goo.gl/2rCsx19KcWtoxMWH9',
-    spanClass: 'col-span-1 row-span-2 h-[420px]', // Portrait Tall Tile
+    spanClass: 'col-span-1 row-span-2 h-[420px]',
   },
   {
     id: '3',
@@ -93,7 +64,7 @@ const mediaItems: GalleryMedia[] = [
     type: 'image',
     thumbnailUrl: '/images/projects/policy-framework-3.jpg',
     driveUrl: 'https://photos.app.goo.gl/2rCsx19KcWtoxMWH9',
-    spanClass: 'col-span-1 row-span-2 h-[420px]', // Portrait Tall Tile
+    spanClass: 'col-span-1 row-span-2 h-[420px]',
   },
   {
     id: '4',
@@ -105,7 +76,7 @@ const mediaItems: GalleryMedia[] = [
     type: 'image',
     thumbnailUrl: '/images/projects/bomain-4.jpg',
     driveUrl: 'https://photos.app.goo.gl/k7qLZnkntJ4PJgMS8',
-    spanClass: 'col-span-1 md:col-span-2 row-span-1 h-[200px]', // Wide Landscape Tile
+    spanClass: 'col-span-1 md:col-span-2 row-span-1 h-[200px]',
   },
   {
     id: '5',
@@ -118,7 +89,7 @@ const mediaItems: GalleryMedia[] = [
     thumbnailUrl: '/images/projects/mazingira-3.jpg',
     videoUrl: 'https://www.youtube.com/embed/TLl_yUUKyeM?si=uLUBzjwXKFymN7PE',
     driveUrl: 'https://photos.app.goo.gl/4PtYGW7d7kVwCJ8q9',
-    spanClass: 'col-span-1 md:col-span-2 row-span-1 h-[200px]', // Standard Small Tile
+    spanClass: 'col-span-1 md:col-span-2 row-span-1 h-[200px]',
   },
 ];
 
@@ -161,30 +132,32 @@ export function DynamicGalleryGrid() {
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
-      {/* Category Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-        {[
-          { id: 'all', label: 'All Story Media' },
-          { id: 'cleanups', label: 'Cleanups & Recycling' },
-          { id: 'wash', label: 'School WASH & Health' },
-          { id: 'peace', label: 'Peace & Sister City' },
-          { id: 'policy', label: 'Policy & Deliberations' },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => {
-              setSelectedCategory(tab.id);
-              setSelectedIndex(null);
-            }}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-              selectedCategory === tab.id
-                ? 'bg-river-teal text-white shadow-md'
-                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-river-teal'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
+      {/* Category Tabs (Swipeable on Mobile) */}
+      <div className="w-full overflow-x-auto pb-2 scrollbar-none [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex items-center justify-start sm:justify-center gap-2.5 min-w-max px-1">
+          {[
+            { id: 'all', label: 'All Story Media' },
+            { id: 'cleanups', label: 'Cleanups & Recycling' },
+            { id: 'wash', label: 'School WASH & Health' },
+            { id: 'peace', label: 'Peace & Sister City' },
+            { id: 'policy', label: 'Policy & Deliberations' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => {
+                setSelectedCategory(tab.id);
+                setSelectedIndex(null);
+              }}
+              className={`shrink-0 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${
+                selectedCategory === tab.id
+                  ? 'bg-river-teal text-white shadow-md'
+                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-river-teal'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Dynamic Asymmetrical Bento Grid */}
